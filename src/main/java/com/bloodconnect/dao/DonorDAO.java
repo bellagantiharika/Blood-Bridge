@@ -70,7 +70,11 @@ public class DonorDAO {
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setDate(1, lastDonationDate);
+            if (lastDonationDate != null) {
+                stmt.setDate(1, lastDonationDate);
+            } else {
+                stmt.setNull(1, Types.DATE);
+            }
             stmt.setInt(2, donorId);
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {

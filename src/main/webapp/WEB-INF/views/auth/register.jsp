@@ -13,7 +13,7 @@
                     <div class="blood-badge mx-auto mb-3">
                         <i class="fa-solid fa-user-plus"></i>
                     </div>
-                    <h3 class="text-white fw-bold">Create an Account</h3>
+                    <h3 class="fw-bold brand-heading">Create an Account</h3>
                     <p class="text-secondary small">Join BloodBridge as a voluntary Donor or Recipient</p>
                 </div>
 
@@ -50,18 +50,19 @@
                     <div class="mb-4">
                         <label class="form-label text-secondary small fw-bold">I WANT TO REGISTER AS *</label>
                         <select name="role" id="roleSelect" class="form-select form-select-dark" required>
-                            <option value="DONOR">Blood Donor (Ready to donate blood)</option>
+                            <option value="DONOR" selected>Blood Donor (Ready to donate blood)</option>
                             <option value="RECIPIENT">Recipient / Patient / Hospital Representative</option>
                         </select>
                     </div>
 
                     <!-- Donor Specific Fields -->
                     <div id="donorFields" class="border-top border-secondary border-opacity-20 pt-4 mb-4">
-                        <h5 class="text-danger mb-3"><i class="fa-solid fa-droplet me-2"></i> Donor Specific Details</h5>
+                        <h5 class="text-danger mb-3"><i class="fa-solid fa-droplet me-2"></i> Donor Details</h5>
                         <div class="row g-3 mb-3">
                             <div class="col-md-4">
                                 <label class="form-label text-secondary small fw-bold">BLOOD GROUP *</label>
-                                <select name="bloodGroup" class="form-select form-select-dark">
+                                <select name="bloodGroup" id="bloodGroupSelect" class="form-select form-select-dark" required>
+                                    <option value="" disabled selected>Select Blood Group</option>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
                                     <option value="B+">B+</option>
@@ -74,11 +75,12 @@
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label text-secondary small fw-bold">AGE *</label>
-                                <input type="number" name="age" class="form-control form-control-dark" min="18" max="65" value="25">
+                                <input type="number" name="age" id="ageInput" class="form-control form-control-dark" min="18" max="65" value="25" required>
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label text-secondary small fw-bold">GENDER *</label>
-                                <select name="gender" class="form-select form-select-dark">
+                                <select name="gender" id="genderSelect" class="form-select form-select-dark" required>
+                                    <option value="" disabled selected>Select Gender</option>
                                     <option value="MALE">Male</option>
                                     <option value="FEMALE">Female</option>
                                     <option value="OTHER">Other</option>
@@ -87,13 +89,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label text-secondary small fw-bold">LAST DONATION DATE (If applicable)</label>
+                            <label class="form-label text-secondary small fw-bold">LAST DONATION DATE (Optional)</label>
                             <input type="date" name="lastDonationDate" class="form-control form-control-dark">
                         </div>
                     </div>
 
-                    <!-- Address & Location Fields -->
-                    <div id="recipientFields" class="border-top border-secondary border-opacity-20 pt-4 mb-4">
+                    <!-- Address & Location Fields (Required for all roles) -->
+                    <div id="locationFields" class="border-top border-secondary border-opacity-20 pt-4 mb-4">
                         <h5 class="text-info mb-3"><i class="fa-solid fa-location-dot me-2"></i> Location & Address</h5>
                         <div class="row g-3 mb-3">
                             <div class="col-md-6">

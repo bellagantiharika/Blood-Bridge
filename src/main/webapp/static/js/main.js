@@ -15,18 +15,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Registration Form Role Field Dynamic Toggle
     const roleSelect = document.getElementById('roleSelect');
     const donorFields = document.getElementById('donorFields');
-    const recipientFields = document.getElementById('recipientFields');
+    const locationFields = document.getElementById('locationFields');
+    const bloodGroupSelect = document.getElementById('bloodGroupSelect');
+    const ageInput = document.getElementById('ageInput');
+    const genderSelect = document.getElementById('genderSelect');
 
     if (roleSelect) {
         function toggleRoleFields() {
             const val = roleSelect.value;
             if (val === 'DONOR') {
                 if (donorFields) donorFields.style.display = 'block';
-                if (recipientFields) recipientFields.style.display = 'block';
-            } else if (val === 'RECIPIENT') {
+                if (bloodGroupSelect) bloodGroupSelect.required = true;
+                if (ageInput) ageInput.required = true;
+                if (genderSelect) genderSelect.required = true;
+            } else {
                 if (donorFields) donorFields.style.display = 'none';
-                if (recipientFields) recipientFields.style.display = 'block';
+                if (bloodGroupSelect) bloodGroupSelect.required = false;
+                if (ageInput) ageInput.required = false;
+                if (genderSelect) genderSelect.required = false;
             }
+            if (locationFields) locationFields.style.display = 'block';
         }
         roleSelect.addEventListener('change', toggleRoleFields);
         toggleRoleFields(); // Initialize on page load

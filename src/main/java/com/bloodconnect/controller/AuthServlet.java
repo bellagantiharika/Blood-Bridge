@@ -113,10 +113,26 @@ public class AuthServlet extends HttpServlet {
         String password = request.getParameter("password");
         String phone = request.getParameter("phone");
         String role = request.getParameter("role");
+        String city = request.getParameter("city");
+        String state = request.getParameter("state");
+        String address = request.getParameter("address");
 
         if (name == null || email == null || password == null || phone == null || role == null ||
             name.trim().isEmpty() || email.trim().isEmpty() || password.trim().isEmpty() || phone.trim().isEmpty()) {
-            request.setAttribute("errorMessage", "All required fields must be filled.");
+            request.setAttribute("errorMessage", "All required basic fields (Name, Email, Password, Phone) must be filled.");
+            request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
+            return;
+        }
+
+        if (city == null || state == null || address == null ||
+            city.trim().isEmpty() || state.trim().isEmpty() || address.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "City, State, and Full Address are required.");
+            request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
+            return;
+        }
+
+        if (!"DONOR".equalsIgnoreCase(role) && !"RECIPIENT".equalsIgnoreCase(role)) {
+            request.setAttribute("errorMessage", "Please select a valid registration role (Donor or Recipient).");
             request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
             return;
         }
@@ -138,34 +154,45 @@ public class AuthServlet extends HttpServlet {
         Donor donor = null;
         Recipient recipient = null;
 
-        String city = request.getParameter("city");
-        String state = request.getParameter("state");
-        String address = request.getParameter("address");
-
         if ("DONOR".equalsIgnoreCase(role)) {
+            String bloodGroup = request.getParameter("bloodGroup");
+            String gender = request.getParameter("gender");
+
+            if (bloodGroup == null || bloodGroup.trim().isEmpty() || gender == null || gender.trim().isEmpty()) {
+                request.setAttribute("errorMessage", "Blood Group and Gender are required for Donors.");
+                request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
+                return;
+            }
+
             donor = new Donor();
-            donor.setBloodGroup(request.getParameter("bloodGroup"));
+            donor.setBloodGroup(bloodGroup.trim());
             
             String ageStr = request.getParameter("age");
-            donor.setAge((ageStr != null && !ageStr.isEmpty()) ? Integer.parseInt(ageStr) : 18);
-            donor.setGender(request.getParameter("gender"));
+            int age = 18;
+            if (ageStr != null && !ageStr.trim().isEmpty()) {
+                try {
+                    age = Integer.parseInt(ageStr.trim());
+                } catch (NumberFormatException ignored) {}
+            }
+            donor.setAge(age);
+            donor.setGender(gender.trim().toUpperCase());
 
             String lastDonationStr = request.getParameter("lastDonationDate");
             if (lastDonationStr != null && !lastDonationStr.trim().isEmpty()) {
                 try {
-                    donor.setLastDonationDate(Date.valueOf(lastDonationStr));
+                    donor.setLastDonationDate(Date.valueOf(lastDonationStr.trim()));
                 } catch (IllegalArgumentException ignored) {}
             }
             donor.setAvailability(true);
-            donor.setCity(city != null ? city.trim() : "");
-            donor.setState(state != null ? state.trim() : "");
-            donor.setAddress(address != null ? address.trim() : "");
+            donor.setCity(city.trim());
+            donor.setState(state.trim());
+            donor.setAddress(address.trim());
 
         } else if ("RECIPIENT".equalsIgnoreCase(role)) {
             recipient = new Recipient();
-            recipient.setCity(city != null ? city.trim() : "");
-            recipient.setState(state != null ? state.trim() : "");
-            recipient.setAddress(address != null ? address.trim() : "");
+            recipient.setCity(city.trim());
+            recipient.setState(state.trim());
+            recipient.setAddress(address.trim());
         }
 
         boolean success = userDAO.registerUser(user, donor, recipient);

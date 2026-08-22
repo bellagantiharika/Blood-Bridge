@@ -103,14 +103,15 @@ public class UserDAO {
                 stmtRole.setString(2, donor.getBloodGroup());
                 stmtRole.setInt(3, donor.getAge());
                 stmtRole.setString(4, donor.getGender());
-                stmtRole.setDate(
-                        5,
-                        donor.getLastDonationDate()
-                );
-                stmtRole.setBoolean(6, true);
-                stmtRole.setString(7, donor.getCity());
-                stmtRole.setString(8, donor.getState());
-                stmtRole.setString(9, donor.getAddress());
+                if (donor.getLastDonationDate() != null) {
+                    stmtRole.setDate(5, donor.getLastDonationDate());
+                } else {
+                    stmtRole.setNull(5, Types.DATE);
+                }
+                stmtRole.setBoolean(6, donor.isAvailability());
+                stmtRole.setString(7, donor.getCity() != null ? donor.getCity() : "");
+                stmtRole.setString(8, donor.getState() != null ? donor.getState() : "");
+                stmtRole.setString(9, donor.getAddress() != null ? donor.getAddress() : "");
 
                 stmtRole.executeUpdate();
             }
