@@ -1,0 +1,269 @@
+/* ============================================================
+   BloodBridge - Master Styling Framework
+   Color Palette:
+   - Main Background: Deep Navy (#0B1220)
+   - Cards: Dark Blue (#111827)
+   - Primary Red: Blood Red (#DC2626)
+   - Red Hover: Bright Red (#EF4444)
+   - Main Text: White (#F9FAFB)
+   - Secondary Text: Slate Gray (#94A3B8)
+   - Success: Green (#22C55E)
+   - Borders: Dark Slate (#273449)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg-main: #0B1220;
+    --card-bg: #111827;
+    --primary-red: #DC2626;
+    --primary-red-hover: #EF4444;
+    --primary-glow: rgba(220, 38, 38, 0.35);
+    
+    --text-primary: #F9FAFB;
+    --text-secondary: #94A3B8;
+    
+    --accent-success: #22C55E;
+    --card-border: #273449;
+    --glass-blur: blur(16px);
+    
+    --accent-blue: #38bdf8;
+    --accent-amber: #f59e0b;
+    
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: var(--font-heading);
+}
+
+/* --- Cards & Panels --- */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-red);
+    box-shadow: 0 25px 50px rgba(220, 38, 38, 0.2);
+}
+
+/* --- Navbar Customization --- */
+.navbar-blood {
+    background: rgba(11, 18, 32, 0.92) !important;
+    backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--card-border);
+    padding: 0.85rem 1.5rem;
+}
+
+.navbar-blood .navbar-brand {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary) !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand-icon {
+    color: var(--primary-red);
+    filter: drop-shadow(0 0 10px var(--primary-glow));
+    animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 6px var(--primary-glow)); }
+    50% { transform: scale(1.1); filter: drop-shadow(0 0 16px var(--primary-red)); }
+}
+
+.nav-link {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-red) !important;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    position: relative;
+    padding: 6rem 0 4rem;
+    background: radial-gradient(circle at top right, rgba(220, 38, 38, 0.15), transparent 45%),
+                radial-gradient(circle at bottom left, rgba(39, 52, 73, 0.4), transparent 45%);
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.15;
+    background: linear-gradient(135deg, #F9FAFB 0%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-title span {
+    background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Buttons --- */
+.btn-blood-danger {
+    background: var(--primary-red);
+    color: #ffffff;
+    border: none;
+    font-weight: 600;
+    padding: 0.75rem 1.75rem;
+    border-radius: 50rem;
+    box-shadow: 0 10px 20px var(--primary-glow);
+    transition: all 0.3s ease;
+}
+
+.btn-blood-danger:hover {
+    background: var(--primary-red-hover);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(239, 68, 68, 0.45);
+}
+
+.btn-blood-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--card-border);
+    font-weight: 600;
+    padding: 0.7rem 1.6rem;
+    border-radius: 50rem;
+    transition: all 0.3s ease;
+}
+
+.btn-blood-outline:hover {
+    background: var(--card-border);
+    color: var(--text-primary);
+    border-color: var(--primary-red);
+}
+
+/* --- Blood Group Badges --- */
+.blood-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-red) 0%, #991b1b 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.1rem;
+    border: 2px solid var(--card-border);
+    box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+/* --- Status Pills --- */
+.badge-urgency-critical {
+    background: rgba(220, 38, 38, 0.2);
+    color: #EF4444;
+    border: 1px solid rgba(220, 38, 38, 0.4);
+}
+
+.badge-urgency-urgent {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.badge-urgency-normal {
+    background: rgba(34, 197, 94, 0.2);
+    color: var(--accent-success);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.badge-status-pending {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+}
+
+.badge-status-accepted {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+}
+
+.badge-status-fulfilled {
+    background: rgba(34, 197, 94, 0.18);
+    color: var(--accent-success);
+}
+
+.badge-status-cancelled {
+    background: rgba(148, 163, 184, 0.15);
+    color: var(--text-secondary);
+}
+
+/* --- Tables Styling --- */
+.table-dark-custom {
+    color: var(--text-primary);
+    background: transparent;
+}
+
+.table-dark-custom th {
+    background: rgba(11, 18, 32, 0.8);
+    border-bottom: 2px solid var(--card-border);
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    padding: 1rem;
+}
+
+.table-dark-custom td {
+    border-bottom: 1px solid var(--card-border);
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+/* --- Form Controls --- */
+.form-control-dark, .form-select-dark {
+    background: #0B1220;
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+}
+
+.form-control-dark:focus, .form-select-dark:focus {
+    background: #111827;
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px var(--primary-glow);
+    color: var(--text-primary);
+}
+
+.form-control-dark::placeholder {
+    color: var(--text-secondary);
+}
+
+/* --- Footer --- */
+.footer-blood {
+    background: #070C16;
+    border-top: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    margin-top: auto;
+    padding: 2.5rem 0;
+}
