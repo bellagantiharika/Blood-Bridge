@@ -1,6 +1,6 @@
-# BloodConnect - Blood Donation Web Application
+# BloodBridge - Blood Donation Web Application
 
-BloodConnect is a full-stack Web Application built using **Java Servlets, JSP, JDBC, MySQL, Bootstrap 5, and MVC Architecture**. The platform connects blood donors with recipients and hospitals, allows users to search donors by blood group and location, manages emergency donation requests, and provides administrators with real-time analytics.
+BloodBridge is a full-stack Web Application built using **Java Servlets, JSP, JDBC, MySQL, Bootstrap 5, and MVC Architecture**. The platform connects blood donors with recipients and hospitals, allows users to search donors by blood group and location, manages emergency donation requests, and provides administrators with real-time analytics.
 
 ---
 
@@ -20,7 +20,7 @@ BloodConnect is a full-stack Web Application built using **Java Servlets, JSP, J
 ## 📁 Project Structure
 
 ```
-BloodConnect/
+BloodBridge/
 ├── pom.xml                                   # Maven build configuration
 ├── database/
 │   └── schema.sql                            # MySQL tables & sample seed data
@@ -111,7 +111,7 @@ You can override default database parameters using Environment Variables if need
    bin\startup.bat    # Windows
    ```
 5. Open your browser and navigate to:
-   `http://localhost:8080/BloodConnect/`
+   `http://localhost:8080/BloodBridge/`
 
 ---
 
