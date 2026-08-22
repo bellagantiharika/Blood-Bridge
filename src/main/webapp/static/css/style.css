@@ -1,42 +1,51 @@
 /* ============================================================
-   BloodBridge - Custom Design System
-   User Theme Palette:
-   - 🏠 Background: Soft Gray (#F8FAFC)
-   - 🧭 Navbar: Deep Navy (#0F172A)
-   - ❤️ Primary Button: Blood Red (#DC2626)
-   - 🔴 Button Hover: Dark Red (#B91C1C)
-   - 🃏 Cards: White (#FFFFFF)
-   - 📝 Heading: Dark Navy (#0F172A)
-   - 📄 Body Text: Slate (#475569)
-   - 🔲 Border: Light Gray (#E2E8F0)
-   - ✅ Success: Green (#16A34A)
-   - ⚠️ Warning: Amber (#D97706)
+   BloodBridge - Master Styling Framework
+
+   Color Palette:
+   - Main Background: Deep Navy (#0B1220)
+   - Cards: Dark Blue (#111827)
+   - Primary Red: Blood Red (#DC2626)
+   - Red Hover: Bright Red (#EF4444)
+   - Main Text: White (#F9FAFB)
+   - Secondary Text: Slate Gray (#94A3B8)
+   - Success: Green (#22C55E)
+   - Borders: Dark Slate (#273449)
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --bg-main: #F8FAFC;
-    --navbar-bg: #0F172A;
-    --card-bg: #FFFFFF;
-    
+    --bg-main: #0B1220;
+    --navbar-bg: #0B1220;
+    --card-bg: #111827;
+
     --primary-red: #DC2626;
-    --primary-red-hover: #B91C1C;
+    --primary-red-hover: #EF4444;
     --primary-glow: rgba(220, 38, 38, 0.25);
-    
-    --text-heading: #0F172A;
-    --text-primary: #475569;
-    --text-secondary: #64748B;
-    --text-muted: #94A3B8;
-    
-    --card-border: #E2E8F0;
-    --accent-success: #16A34A;
-    --accent-warning: #D97706;
-    --accent-blue: #2563EB;
-    
+
+    --text-heading: #F9FAFB;
+    --text-primary: #F9FAFB;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+
+    --card-border: #273449;
+
+    --accent-success: #22C55E;
+    --accent-warning: #F59E0B;
+    --accent-blue: #3B82F6;
+
     --glass-blur: blur(12px);
+
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
+}
+
+/* ============================================================
+   GLOBAL
+   ============================================================ */
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -49,38 +58,50 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6, .brand-heading, .navbar-brand {
+main {
+    flex: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.brand-heading,
+.navbar-brand {
     font-family: var(--font-heading);
     color: var(--text-heading) !important;
 }
 
-/* --- Cards & Panels --- */
-.glass-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+p {
+    color: var(--text-secondary);
 }
 
-.glass-card:hover {
-    transform: translateY(-3px);
-    border-color: #CBD5E1;
-    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.1);
+a {
+    color: var(--primary-red);
+    transition: color 0.2s ease;
 }
 
-/* --- Navbar Customization --- */
+a:hover {
+    color: var(--primary-red-hover);
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+
 .navbar-blood {
     background: var(--navbar-bg) !important;
     backdrop-filter: var(--glass-blur);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--card-border);
     padding: 0.85rem 1.5rem;
 }
 
 .navbar-blood .navbar-brand {
     font-size: 1.6rem;
     font-weight: 800;
-    color: #FFFFFF !important;
+    color: var(--text-heading) !important;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -93,26 +114,56 @@ h1, h2, h3, h4, h5, h6, .brand-heading, .navbar-brand {
 }
 
 @keyframes pulse-glow {
-    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px var(--primary-glow)); }
-    50% { transform: scale(1.1); filter: drop-shadow(0 0 12px var(--primary-red)); }
+    0%,
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 4px var(--primary-glow));
+    }
+
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 12px var(--primary-red));
+    }
 }
 
 .nav-link {
-    color: #94A3B8 !important;
+    color: var(--text-secondary) !important;
     font-weight: 500;
     transition: all 0.2s ease;
 }
 
-.nav-link:hover, .nav-link.active {
-    color: #FFFFFF !important;
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text-heading) !important;
 }
 
-/* --- Hero Section --- */
+.navbar-toggler {
+    border-color: var(--card-border) !important;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+
 .hero-section {
     position: relative;
     padding: 5rem 0 4rem;
-    background: radial-gradient(circle at top right, rgba(220, 38, 38, 0.08), transparent 50%),
-                radial-gradient(circle at bottom left, rgba(15, 23, 42, 0.05), transparent 50%);
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(220, 38, 38, 0.12),
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(37, 99, 235, 0.06),
+            transparent 50%
+        );
 }
 
 .hero-title {
@@ -126,132 +177,271 @@ h1, h2, h3, h4, h5, h6, .brand-heading, .navbar-brand {
     color: var(--primary-red);
 }
 
-/* --- Buttons --- */
+.hero-section p {
+    color: var(--text-secondary);
+}
+
+/* ============================================================
+   CARDS & PANELS
+   ============================================================ */
+
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-3px);
+    border-color: #34445C;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    color: var(--text-primary);
+}
+
+.card-header {
+    background-color: #162033;
+    border-bottom-color: var(--card-border);
+    color: var(--text-heading);
+}
+
+.card-footer {
+    background-color: #162033;
+    border-top-color: var(--card-border);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
 .btn-blood-danger {
     background: var(--primary-red);
     color: #FFFFFF;
+
     border: none;
+
     font-weight: 600;
+
     padding: 0.75rem 1.75rem;
     border-radius: 0.5rem;
+
     box-shadow: 0 4px 12px var(--primary-glow);
+
     transition: all 0.25s ease;
 }
 
 .btn-blood-danger:hover {
     background: var(--primary-red-hover);
     color: #FFFFFF;
+
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(185, 28, 28, 0.35);
+
+    box-shadow:
+        0 6px 18px rgba(239, 68, 68, 0.35);
 }
 
 .btn-blood-outline {
     background: transparent;
     color: var(--text-heading);
+
     border: 2px solid var(--card-border);
+
     font-weight: 600;
+
     padding: 0.7rem 1.6rem;
     border-radius: 0.5rem;
+
     transition: all 0.25s ease;
 }
 
 .btn-blood-outline:hover {
-    background: #F1F5F9;
-    color: var(--text-heading);
-    border-color: #CBD5E1;
+    background: #1F2937;
+    color: #FFFFFF;
+
+    border-color: #3B4A61;
 }
 
-/* --- Blood Group Badges --- */
+/* Bootstrap buttons */
+
+.btn-danger {
+    background-color: var(--primary-red);
+    border-color: var(--primary-red);
+}
+
+.btn-danger:hover {
+    background-color: var(--primary-red-hover);
+    border-color: var(--primary-red-hover);
+}
+
+.btn-outline-danger {
+    color: var(--primary-red);
+    border-color: var(--primary-red);
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--primary-red);
+    border-color: var(--primary-red);
+    color: #FFFFFF;
+}
+
+/* ============================================================
+   BLOOD GROUP BADGES
+   ============================================================ */
+
 .blood-badge {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
+
     width: 48px;
     height: 48px;
+
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-hover) 100%);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-red) 0%,
+            var(--primary-red-hover) 100%
+        );
+
     color: #FFFFFF;
+
     font-weight: 800;
     font-size: 1.1rem;
-    border: 2px solid #FFFFFF;
-    box-shadow: 0 4px 12px var(--primary-glow);
+
+    border: 2px solid var(--card-bg);
+
+    box-shadow:
+        0 4px 12px var(--primary-glow);
 }
 
-/* --- Status Badges --- */
+/* ============================================================
+   STATUS BADGES
+   ============================================================ */
+
 .badge-urgency-critical {
-    background: #FEE2E2;
-    color: var(--primary-red);
-    border: 1px solid #FCA5A5;
+    background: rgba(220, 38, 38, 0.15);
+    color: #F87171;
+    border: 1px solid rgba(220, 38, 38, 0.4);
 }
 
 .badge-urgency-urgent {
-    background: #FEF3C7;
-    color: var(--accent-warning);
-    border: 1px solid #FDE68A;
+    background: rgba(245, 158, 11, 0.15);
+    color: #FBBF24;
+    border: 1px solid rgba(245, 158, 11, 0.35);
 }
 
 .badge-urgency-normal {
-    background: #DCFCE7;
-    color: var(--accent-success);
-    border: 1px solid #86EFAC;
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ADE80;
+    border: 1px solid rgba(34, 197, 94, 0.35);
 }
 
 .badge-status-pending {
-    background: #FEF3C7;
-    color: var(--accent-warning);
+    background: rgba(245, 158, 11, 0.15);
+    color: #FBBF24;
 }
 
 .badge-status-accepted {
-    background: #DBEAFE;
-    color: var(--accent-blue);
+    background: rgba(59, 130, 246, 0.15);
+    color: #60A5FA;
 }
 
 .badge-status-fulfilled {
-    background: #DCFCE7;
-    color: var(--accent-success);
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ADE80;
 }
 
 .badge-status-cancelled {
-    background: #F1F5F9;
+    background: #1F2937;
     color: var(--text-secondary);
 }
 
-/* --- Tables Styling --- */
+/* ============================================================
+   TABLES
+   ============================================================ */
+
 .table-dark-custom {
     color: var(--text-primary);
     background: transparent;
 }
 
 .table-dark-custom th {
-    background: #F1F5F9;
+    background: #162033;
+
     border-bottom: 2px solid var(--card-border);
+
     color: var(--text-heading);
+
     font-weight: 600;
+
     text-transform: uppercase;
+
     font-size: 0.825rem;
+
     letter-spacing: 0.05em;
+
     padding: 1rem;
 }
 
 .table-dark-custom td {
+    background: transparent;
+
     border-bottom: 1px solid var(--card-border);
+
+    color: var(--text-primary);
+
     padding: 1rem;
+
     vertical-align: middle;
 }
 
-/* --- Form Controls --- */
-.form-control-dark, .form-select-dark {
-    background: #FFFFFF;
+.table-dark-custom tbody tr:hover {
+    background: rgba(255, 255, 255, 0.025);
+}
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+
+.form-control-dark,
+.form-select-dark {
+    background: #0F172A;
+
     border: 1px solid var(--card-border);
+
     color: var(--text-heading);
+
     border-radius: 0.5rem;
+
     padding: 0.75rem 1rem;
 }
 
-.form-control-dark:focus, .form-select-dark:focus {
-    background: #FFFFFF;
+.form-control-dark:focus,
+.form-select-dark:focus {
+    background: #0F172A;
+
     border-color: var(--primary-red);
-    box-shadow: 0 0 0 3px var(--primary-glow);
+
+    box-shadow:
+        0 0 0 3px var(--primary-glow);
+
     color: var(--text-heading);
 }
 
@@ -259,11 +449,181 @@ h1, h2, h3, h4, h5, h6, .brand-heading, .navbar-brand {
     color: var(--text-muted);
 }
 
-/* --- Footer --- */
+.form-control-dark:disabled,
+.form-select-dark:disabled {
+    background: #111827;
+    color: #64748B;
+}
+
+/* Bootstrap form controls */
+
+.form-control,
+.form-select {
+    background-color: #0F172A;
+    border-color: var(--card-border);
+    color: var(--text-heading);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #0F172A;
+    border-color: var(--primary-red);
+
+    color: var(--text-heading);
+
+    box-shadow:
+        0 0 0 0.2rem var(--primary-glow);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+/* ============================================================
+   LABELS
+   ============================================================ */
+
+label,
+.form-label {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* ============================================================
+   ALERTS
+   ============================================================ */
+
+.alert {
+    border-radius: 0.75rem;
+}
+
+.alert-danger {
+    background: rgba(220, 38, 38, 0.12);
+    border-color: rgba(220, 38, 38, 0.35);
+    color: #FCA5A5;
+}
+
+.alert-success {
+    background: rgba(34, 197, 94, 0.12);
+    border-color: rgba(34, 197, 94, 0.35);
+    color: #86EFAC;
+}
+
+.alert-warning {
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.35);
+    color: #FCD34D;
+}
+
+.alert-info {
+    background: rgba(59, 130, 246, 0.12);
+    border-color: rgba(59, 130, 246, 0.35);
+    color: #93C5FD;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
 .footer-blood {
     background: var(--navbar-bg);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: #94A3B8;
+
+    border-top: 1px solid var(--card-border);
+
+    color: var(--text-secondary);
+
     margin-top: auto;
+
     padding: 2.5rem 0;
+}
+
+.footer-blood a {
+    color: var(--text-secondary);
+}
+
+.footer-blood a:hover {
+    color: var(--primary-red-hover);
+}
+
+/* ============================================================
+   TEXT UTILITIES
+   ============================================================ */
+
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+.text-dark {
+    color: var(--text-heading) !important;
+}
+
+.text-danger {
+    color: var(--primary-red) !important;
+}
+
+.text-success {
+    color: var(--accent-success) !important;
+}
+
+/* ============================================================
+   MOBILE RESPONSIVENESS
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    .navbar-blood {
+        padding: 0.7rem 1rem;
+    }
+
+    .navbar-blood .navbar-brand {
+        font-size: 1.35rem;
+    }
+
+    .hero-section {
+        padding: 3rem 1rem 2.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.25rem;
+    }
+
+    .glass-card {
+        border-radius: 0.75rem;
+    }
+
+    .btn-blood-danger,
+    .btn-blood-outline {
+        width: 100%;
+        text-align: center;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .hero-section {
+        padding: 2.5rem 0.75rem 2rem;
+    }
+
+    .hero-title {
+        font-size: 1.9rem;
+    }
+
+    .navbar-blood .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .glass-card {
+        padding: 1rem !important;
+    }
+
+    .blood-badge {
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
+    }
 }
