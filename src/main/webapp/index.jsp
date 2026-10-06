@@ -10,8 +10,8 @@
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-7">
-                <div class="badge bg-danger bg-opacity-20 text-danger border border-danger px-3 py-2 rounded-pill mb-3">
-                    <i class="fa-solid fa-heart-pulse me-1"></i> Every Drop Saves a Life
+                   <div class="badge bg-danger bg-opacity-20 text-white border border-danger px-3 py-2 rounded-pill mb-3">
+                 <i class="fa-solid fa-heart-pulse me-1 text-danger"></i> Every Drop Saves a Life
                 </div>
                 <h1 class="hero-title mb-4">
                     Connecting <span>Blood Donors</span> with Emergency Patients Instantly.
