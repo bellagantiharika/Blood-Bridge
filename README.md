@@ -1,6 +1,6 @@
-# BloodBridge - Blood Donation Web Application
+# BloodConnect - Blood Donation Web Application
 
-BloodBridge is a full-stack Web Application built using **Java Servlets, JSP, JDBC, MySQL, Bootstrap 5, and MVC Architecture**. The platform connects blood donors with recipients and hospitals, allows users to search donors by blood group and location, manages emergency donation requests, and provides administrators with real-time analytics.
+BloodConnect is a full-stack Web Application built using **Java Servlets, JSP, JDBC, MySQL, Bootstrap 5, and MVC Architecture**. The platform connects blood donors with recipients and hospitals, allows users to search donors by blood group and location, manages emergency donation requests, and provides administrators with real-time analytics.
 
 ---
 
@@ -20,7 +20,7 @@ BloodBridge is a full-stack Web Application built using **Java Servlets, JSP, JD
 ## 📁 Project Structure
 
 ```
-BloodBridge/
+BloodConnect/
 ├── pom.xml                                   # Maven build configuration
 ├── database/
 │   └── schema.sql                            # MySQL tables & sample seed data
@@ -75,10 +75,9 @@ BloodBridge/
 ## 🛠️ Database Setup (MySQL)
 
 1. Start your local MySQL server.
-2. Run the SQL initialization script:
-   ```bash
-   mysql -u root -p < database/schema.sql
-   ```
+2. Import the SQL initialization script:
+   - **Mac/Linux:** `mysql -u root -p < database/schema.sql`
+   - **Windows (PowerShell):** Log into `mysql -u root -p`, then run: `source database/schema.sql;`
 3. The database `bloodconnect_db` will be created with sample seed data.
 
 ### Sample Login Credentials (All passwords are `password123`):
@@ -95,23 +94,31 @@ You can override default database parameters using Environment Variables if need
 - `DB_USER`: `root`
 - `DB_PASSWORD`: `root`
 
+*(Note: If MySQL connection fails, the app safely falls back to a temporary H2 In-Memory database with the same sample accounts).*
+
 ---
 
-## 📦 Build & Tomcat Deployment
+## 📦 Build & Run
 
-1. **Build WAR file using Maven**:
+### Option A: Quick Start (Maven Jetty)
+The easiest way to run the application locally without installing a server:
+```bash
+mvn clean jetty:run
+```
+Then open your browser and navigate to: `http://localhost:8085/`
+
+### Option B: Tomcat Deployment
+1. Build WAR file using Maven:
    ```bash
    mvn clean package
    ```
-2. The generated WAR file will be located at `target/BloodConnect.war`.
-3. Copy `BloodConnect.war` into your Tomcat `webapps/` folder.
-4. Start Apache Tomcat:
+2. Copy the generated `target/BloodConnect.war` into your Tomcat `webapps/` folder.
+3. Start Apache Tomcat:
    ```bash
    ./bin/startup.sh   # Linux / macOS
    bin\startup.bat    # Windows
    ```
-5. Open your browser and navigate to:
-   `http://localhost:8080/BloodBridge/`
+4. Open your browser and navigate to: `http://localhost:8080/BloodConnect/`
 
 ---
 
