@@ -142,12 +142,15 @@ public class DBConnection {
             "    FOREIGN KEY (donor_id) REFERENCES donors(donor_id) ON DELETE CASCADE " +
             "); " +
             "MERGE INTO users (user_id, name, email, password_hash, phone, role, status) VALUES " +
-            "(1, 'System Administrator', 'admin@bloodbridge.com', '$2a$10$7R.p55o/jE2G8k7Fq8cZgO6.M01u3lU.J0rLzS4Wq0R/7h8k.9xG.', '9876543210', 'ADMIN', 'ACTIVE'), " +
-            "(2, 'John Doe', 'john.donor@gmail.com', '$2a$10$7R.p55o/jE2G8k7Fq8cZgO6.M01u3lU.J0rLzS4Wq0R/7h8k.9xG.', '9876543211', 'DONOR', 'ACTIVE'), " +
-            "(3, 'Sarah Connor', 'sarah.donor@gmail.com', '$2a$10$7R.p55o/jE2G8k7Fq8cZgO6.M01u3lU.J0rLzS4Wq0R/7h8k.9xG.', '9876543212', 'DONOR', 'ACTIVE'); " +
+            "(1, 'System Administrator', 'admin@bloodconnect.com', '$2a$10$lzif45bQA0QHOkmc9WkMyuJYRSA0zo0O8zexhkB2WmYo8Cvxtbhaq', '9876543210', 'ADMIN', 'ACTIVE'), " +
+            "(2, 'John Doe', 'john.donor@gmail.com', '$2a$10$lzif45bQA0QHOkmc9WkMyuJYRSA0zo0O8zexhkB2WmYo8Cvxtbhaq', '9876543211', 'DONOR', 'ACTIVE'), " +
+            "(3, 'Sarah Connor', 'sarah.donor@gmail.com', '$2a$10$lzif45bQA0QHOkmc9WkMyuJYRSA0zo0O8zexhkB2WmYo8Cvxtbhaq', '9876543212', 'DONOR', 'ACTIVE'), " +
+            "(6, 'Robert Johnson', 'robert.recipient@gmail.com', '$2a$10$lzif45bQA0QHOkmc9WkMyuJYRSA0zo0O8zexhkB2WmYo8Cvxtbhaq', '9876543215', 'RECIPIENT', 'ACTIVE'); " +
             "MERGE INTO donors (donor_id, user_id, blood_group, age, gender, last_donation_date, availability, city, state, address) VALUES " +
             "(1, 2, 'O+', 28, 'MALE', '2024-02-15', TRUE, 'New York', 'NY', '123 Broadway St, Suite 4'), " +
-            "(2, 3, 'A+', 34, 'FEMALE', '2023-11-20', TRUE, 'Los Angeles', 'CA', '456 Sunset Blvd'); ";
+            "(2, 3, 'A+', 34, 'FEMALE', '2023-11-20', TRUE, 'Los Angeles', 'CA', '456 Sunset Blvd'); " +
+            "MERGE INTO recipients (recipient_id, user_id, city, state, address) VALUES " +
+            "(1, 6, 'New York', 'NY', '55 Wall Street'); ";
 
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement()) {
