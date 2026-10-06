@@ -206,6 +206,9 @@ a:hover {
     box-shadow:
         0 15px 35px rgba(0, 0, 0, 0.35);
 }
+.modal-content.glass-card:hover {
+    transform: none;
+}
 
 .card {
     background-color: var(--card-bg);
